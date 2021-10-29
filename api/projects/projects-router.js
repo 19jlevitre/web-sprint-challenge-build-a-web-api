@@ -3,6 +3,7 @@ const Project = require('./projects-model');
 const router = express.Router();
 const {
     checkProjectId,
+    validateProject,
 } = require('./projects-middleware')
 
 router.get('/', (req, res) => {
@@ -21,7 +22,11 @@ router.get('/:id', checkProjectId, (req, res) => {
 
 });
 
-router.post('/', (req, res, next) => {
+router.post('/', validateProject, (req, res, next) => {
+    Project.insert(req.body)
+    .then(newProject => {
+        res.status(201).json(newProject)
+    })
 
 });
 
