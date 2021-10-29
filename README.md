@@ -147,7 +147,23 @@ We have provided test data for all the resources.
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
 1. The core features of Node.js and Express and why they are useful.
+
+The core features would be the use of routing and middleware. They are extremely useful because they can help you modularize your code and organize it better. Routing is especially usefull because it allows you to define how your http requests get handled on their certain endpoints. It allows you to use several different endpoints as well.
+
 1. Understand and explain the use of Middleware.
+
+Middleware is basically a modularization of repeating actions that would need to happen in your http requests. Like validating user input.
+
 1. The basic principles of the REST architectural style.
+
+It seperates the UI concerns. It is stateless, so every response from server to client has all the info needed already. It is explicit whether the response is cacheable or not.
+
 1. Understand and explain the use of Express Routers.
+
+Express Routers are used to organize http requests for a specific endpoint within a data base. They will all use one model as well.
+
 1. Describe tooling used to manually test the correctness of an API.
+
+I use Postman to test my API and how it handles requests. I can test every "verb" I want to use and I can manipulate the request body to see what responses I am recieving. I can also use the debuugger console inside of VScode to check step-by-step what is happening inside of my code and how the information is changing and being passed down.
+
+

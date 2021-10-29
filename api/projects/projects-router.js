@@ -4,6 +4,7 @@ const router = express.Router();
 const {
     checkProjectId,
     validateProject,
+    validateProjectUpdate,
 } = require('./projects-middleware')
 
 router.get('/', (req, res) => {
@@ -21,7 +22,7 @@ router.get('/:id', checkProjectId, (req, res) => {
 
 });
 
-router.post('/', validateProject, (req, res, next) => {
+router.post('/', validateProject, (req, res) => {
     Project.insert(req.body)
         .then(newProject => {
             res.status(201).json(newProject)
@@ -29,17 +30,12 @@ router.post('/', validateProject, (req, res, next) => {
 
 });
 
-router.put('/:id', checkProjectId, validateProject, (req, res, next) => {
-
-
-    Project.update(req.params.id, req.body)
-        .then(updatedProject => {
-            res.json(updatedProject)
-        }).catch(err => {
-            console.log(err)
-            next()
-        })
-
+router.put('/:id', checkProjectId, validateProjectUpdate, (req, res, next) => {
+        
+            Project.update(req.params.id, req.body)
+            .then(updated => {
+                return res.json(updated)
+            })
 });
 
 router.delete('/:id', checkProjectId, (req, res, next) => {

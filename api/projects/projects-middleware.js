@@ -14,15 +14,25 @@ function checkProjectId(req, res, next) {
 }
 
 function validateProject(req, res, next) {
-    const { name, description } = req.body
+    const { name, description} = req.body
     if (name && description) {
         next()
     } else {
-        res.status(400).json({ message: "please provide name and description" })
+        return res.status(400).json()
+    }
+}
+
+function validateProjectUpdate(req, res, next) {
+    const { name, description, complete} = req.body
+    if(!name || !description || complete) {
+        res.status(400).json()
+    } else {
+        next()
     }
 }
 
 module.exports = {
     checkProjectId,
     validateProject,
+    validateProjectUpdate,
 }
