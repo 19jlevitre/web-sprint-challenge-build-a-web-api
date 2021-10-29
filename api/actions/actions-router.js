@@ -3,6 +3,7 @@ const Action = require('./actions-model.js');
 const router = express.Router();
 const {
     checkActionId,
+    validateAction,
 } = require('./actions-middlware');
 router.get('/', (req, res) => {
     Action.get(req.params.id)
@@ -18,13 +19,13 @@ router.get('/:id', checkActionId, (req, res) => {
     res.status(200).json(req.actionFromDb)
 });
 
-// router.post('/', validateProject, (req, res, next) => {
-//     Project.insert(req.body)
-//     .then(newProject => {
-//         res.status(201).json(newProject)
-//     })
+router.post('/', validateAction, (req, res, next) => {
+    Action.insert(req.body)
+    .then(newAction => {
+        res.status(201).json(newAction)
+    })
 
-// });
+});
 
 // router.put('/:id', checkProjectId, validateProject, (req, res, next) => {
    

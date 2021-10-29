@@ -14,6 +14,16 @@ function checkActionId(req, res, next) {
     .catch(next)
 }
 
+function validateAction (req, res, next) {
+    const { project_id , description, notes} = req.body
+    if(project_id && description && notes) {
+        next()
+    } else {
+        res.status(400).json()
+    }
+}
+
 module.exports = {
     checkActionId,
+    validateAction,
 }
