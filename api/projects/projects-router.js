@@ -51,6 +51,12 @@ router.delete('/:id', checkProjectId, (req, res, next) => {
 });
 
 router.get('/:id/actions', (req, res, next)=> {
+    Project.getProjectActions(req.params.id)
+    .then(actions => {
+        res.json(actions)
+    }).catch(err => {
+        console.log(err)
+    })
 
 });
 
