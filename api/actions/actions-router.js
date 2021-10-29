@@ -27,18 +27,18 @@ router.post('/', validateAction, (req, res, next) => {
 
 });
 
-// router.put('/:id', checkProjectId, validateProject, (req, res, next) => {
+router.put('/:id', checkActionId, validateAction, (req, res, next) => {
    
    
-//     Project.update(req.params.id, req.body)
-//         .then(updatedProject => {
-//             res.json(updatedProject)         
-//         }).catch(err => {
-//         console.log(err)
-//         next()
-//     })
+    Action.update(req.params.id, req.body)
+        .then(updatedAction => {
+            res.json(updatedAction)         
+        }).catch(err => {
+        console.log(err)
+        next()
+    })
   
-// });
+});
 
 // router.delete('/:id', checkProjectId, (req, res, next) => {
 //     Project.remove(req.params.id)
