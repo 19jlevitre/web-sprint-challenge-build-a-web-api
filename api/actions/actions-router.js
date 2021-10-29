@@ -5,6 +5,7 @@ const {
     checkActionId,
     validateAction,
 } = require('./actions-middlware');
+
 router.get('/', (req, res) => {
     Action.get(req.params.id)
         .then(actions => {
@@ -24,20 +25,16 @@ router.post('/', validateAction, (req, res, next) => {
         .then(newAction => {
             res.status(201).json(newAction)
         })
-
 });
 
 router.put('/:id', checkActionId, validateAction, (req, res, next) => {
-
-
     Action.update(req.params.id, req.body)
         .then(updatedAction => {
             res.json(updatedAction)
         }).catch(err => {
             console.log(err)
             next()
-        })
-
+        });
 });
 
 router.delete('/:id', checkActionId, (req, res, next) => {
@@ -45,7 +42,6 @@ router.delete('/:id', checkActionId, (req, res, next) => {
         .then(() => {
             res.status(200).json(req.actionFromDb)
         }).catch(next)
-
 });
 
 module.exports = router
