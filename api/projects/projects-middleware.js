@@ -14,11 +14,11 @@ function checkProjectId(req, res, next) {
 }
 
 function validateProject(req, res, next) {
-    const { name, description } = req.body
-    if(!name || !description) {
-        res.status(400).json({ message: "please provide name and description"})
-    } else {
+    const { name, description} = req.body
+    if(name && description) {
         next()
+    } else {
+        res.status(400).json({ message: "please provide name and description"})
     }
 }
 

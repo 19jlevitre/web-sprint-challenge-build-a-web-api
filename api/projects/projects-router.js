@@ -13,7 +13,6 @@ router.get('/', (req, res) => {
     })
     .catch(error => {
         console.log(error)
-        res.json([])
     });
 });
 
@@ -30,11 +29,24 @@ router.post('/', validateProject, (req, res, next) => {
 
 });
 
-router.put('/:id', (req, res, next) => {
-
+router.put('/:id', checkProjectId, validateProject, (req, res, next) => {
+   
+   
+    Project.update(req.params.id, req.body)
+        .then(updatedProject => {
+            res.json(updatedProject)         
+        }).catch(err => {
+        console.log(err)
+        next()
+    })
+  
 });
 
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', checkProjectId, (req, res, next) => {
+    Project.remove(req.params.id)
+    .then(() => {
+        res.status(200).json(req.projectFromDbprojectFromDb)
+    }).catch(next)
 
 });
 
